@@ -28,98 +28,6 @@ void fillArray(int *arr, int nb, int n)
       arr[i] = nb;
 }
 
-void	*ftt_memmove(void *dst, const void *src, size_t len)
-{
-	unsigned char		*pd;
-	const unsigned char	*ps;
-
-	pd = dst;
-	ps = src;
-	if (ps > pd)
-	{
-		while (len--)
-		{
-			pd += len;
-			ps += len;
-			*pd-- = *ps--;
-		}
-	}
-	else
-		while (len--)
-			*pd++ = *ps++;
-	return (dst);
-	
-	
-}
-
-size_t	ftt_strlcat(char *dst, const char *src, size_t siz)
-{
-	char *d = dst;
-	const char *s = src;
-	size_t n = siz;
-	size_t dlen;
-
-	/* Find the end of dst and adjust bytes left but don't go past end */
-	while (n-- != 0 && *d != '\0')
-		d++;
-	dlen = d - dst;
-	n = siz - dlen;
-
-	if (n == 0)
-		return(dlen + strlen(s));
-	while (*s != '\0') {
-		if (n != 1) {
-			*d++ = *s;
-			n--;
-		}
-		s++;
-	}
-	*d = '\0';
-
-	return(dlen + (s - src));	/* count does not include NUL */
-}
-
-int	ftt_strcmp(char *s1, char *s2)
-{
-	while (*s1 != '\0')
-	{
-		if (*s2 != *s1)
-			return (*s2 - *s1);
-		else
-		{
-			s1++;
-			s2++;
-		}
-	}
-	if (*s1 != '\0')
-		return (*s1 - *s2);
-	return (0);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
-{
-	const char *osrc = src;
-	size_t nleft = dsize;
-
-	/* Copy as many bytes as will fit. */
-	if (nleft != 0) {
-		while (--nleft != 0) {
-			if ((*dst++ = *src++) == '\0')
-				break;
-		}
-	}
-
-	/* Not enough room in dst, add NUL and traverse rest of src. */
-	if (nleft == 0) {
-		if (dsize != 0)
-			*dst = '\0';		/* NUL-terminate dst */
-		while (*src++)
-			;
-	}
-
-	return(src - osrc - 1);	/* count does not include NUL */
-}
-
 int main(void)
 {
     /* MEMSET */
@@ -196,7 +104,7 @@ int main(void)
     printf( "Before memmove, target is \"%s\"\n", target );
     ft_memmove( p, source, 5 );
     printf( "After memmove, target becomes \"%s\"\n", target );
-	char	src3[] = "lorem ipsum dolor sit amet";
+	char	src3[] = "Hello les genw";
 	char	*dest2;
 	dest2 = src3 + 1;
 	ft_memmove(dest2, src3, 8);	
@@ -262,49 +170,60 @@ int main(void)
 
 	/* STRNSTR */
 
-	char		*str4 = "Hello les genw";
-	if (strnstr(str4, "Hello", 6) != ft_strnstr(str4, "Hello", 6))
+	printf("\nSTART test ft_STRNSTR");
+
+	char	*haystackn;
+	char	*needlen;
+	int		len_strnstr;
+
+	haystackn = "Hello les genw";
+	needlen = "Hello";
+	if (strnstr(haystackn, needlen, 6) != ft_strnstr(haystackn, needlen, 6))
 		printf("\nerr0");
-	if (strnstr(str4, "Hello", 3) != ft_strnstr(str4, "Hello", 3))
+	if (strnstr(haystackn, needlen, 3) != ft_strnstr(haystackn, needlen, 3))
 		printf("\nerr1");
-	if (strnstr(str4, "les", 1) != ft_strnstr(str4, "les", 1))
+	if (strnstr(haystackn, "les", 1) != ft_strnstr(haystackn, "les", 1))
 	{
-		printf("\noriginal: %s", strnstr(str4, "les", 1));
-		printf("\nmy: %s", ft_strnstr(str4, "les", 1));
+		printf("\noriginal 02: %s", strnstr(haystackn, "les", 1));
+		printf("\nmy: %s", ft_strnstr(haystackn, "les", 1));
 	}
-	if (strnstr(str4, "gen", 2) != ft_strnstr(str4, "gen", 2))
+	if (strnstr(haystackn, "gen", 2) != ft_strnstr(haystackn, "gen", 2))
 	{
-		printf("\noriginal: %s", strnstr(str4, "gen", 2));
-		printf("\nmy: %s", ft_strnstr(str4, "gen", 2));
+		printf("\noriginal 03: %s", strnstr(haystackn, "gen", 2));
+		printf("\nmy: %s", ft_strnstr(haystackn, "gen", 2));
 	}
-	if (strnstr("abcdef", "abcdefghijklmnop", 6) != ft_strnstr("abcdef", "abcdefghijklmnop", 6))
+	haystackn = "abcdef";
+	needlen = "abcdefghijklmnop";
+	if (strnstr(haystackn, needlen, 6) != ft_strnstr(haystackn, needlen, 6))
 	{
-		printf("\noriginal: %s", strnstr("abcdef", "abcdefghijklmnop", 6));
-		printf("\nmy: %s", ft_strnstr("abcdef", "abcdefghijklmnop", 6));
+		printf("\noriginal 04: %s", strnstr(haystackn, needlen, 6));
+		printf("\nmy: %s", ft_strnstr(haystackn, needlen, 6));
 	}
-	if (strnstr("AAAAAAAAAAAAA", "AAAAAAAAAAAAA", 13) != ft_strnstr("AAAAAAAAAAAAA", "AAAAAAAAAAAAA", 13))
+	haystackn = "AAAAAAAAAAAAA";	
+	if (strnstr(haystackn, haystackn, 13) != ft_strnstr(haystackn, haystackn, 13))
 	{
-		printf("\noriginal: %s", strnstr("AAAAAAAAAAAAA", "AAAAAAAAAAAAA", 13));
-		printf("\nmy: %s", ft_strnstr("AAAAAAAAAAAAA", "AAAAAAAAAAAAA", 13));
+		printf("\noriginal 05: %s", strnstr(haystackn, haystackn, 13));
+		printf("\nmy: %s", ft_strnstr(haystackn, haystackn, 13));
 	}
-	if (strnstr("lorem ipsum dolor sit amet", "", 10) != ft_strnstr("lorem ipsum dolor sit amet", "", 10))
+	haystackn = "lorem ipsum dolor sit amet";
+	if (strnstr(haystackn, "", 10) != ft_strnstr(haystackn, "", 10))
 	{
-		printf("\noriginal: %s", strnstr("lorem ipsum dolor sit amet", "", 10));
-		printf("\nmy: %s", ft_strnstr("lorem ipsum dolor sit amet", "", 10));
+		printf("\noriginal 06: %s", strnstr(haystackn, "", 10));
+		printf("\nmy: %s", ft_strnstr(haystackn, "", 10));
 	}
-	if (strnstr("lorem ipsum dolor sit amet", "ipsumm", 30) != ft_strnstr("lorem ipsum dolor sit amet", "ipsumm", 30))
+	if (strnstr(haystackn, "ipsumm", 30) != ft_strnstr(haystackn, "ipsumm", 30))
 	{
-		printf("\noriginal fn: %s", strnstr("lorem ipsum dolor sit amet", "ipsumm", 30));
-		printf("\nmy function: %s", ft_strnstr("lorem ipsum dolor sit amet", "ipsumm", 30));
+		printf("\noriginal 07: %s", strnstr(haystackn, "ipsumm", 30));
+		printf("\nmy function: %s", ft_strnstr(haystackn, "ipsumm", 30));
 	}
 	if (strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9) != ft_strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9))
 	{
-		printf("\noriginal fn: %s", strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9));
+		printf("\noriginal 08: %s", strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9));
 		printf("\nmy function: %s", ft_strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9));
 	}
 	if (strnstr("123456789", "9", 8) != ft_strnstr("123456789", "9", 8))
 	{
-		printf("\noriginal fn: %s", strnstr("123456789", "9", 8));
+		printf("\noriginal 09: %s", strnstr("123456789", "9", 8));
 		printf("\nmy function: %s", ft_strnstr("123456789", "9", 8));
 	}
 	char	buf[11];
@@ -325,9 +244,9 @@ int main(void)
 	char 	*s7 = ft_strnstr(big, little, max);
 
 	if (s6 != s7)
-		printf("\nERROR%s and %s", s6, s7);
+		printf("\nERROR %s and %s", s6, s7);
 
-	printf("\n");
+	printf("\ntest END\n");
 
 	/* ATOI */
 
