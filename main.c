@@ -30,9 +30,11 @@ void fillArray(int *arr, int nb, int n)
 
 int main(void)
 {
+	int i;
+	char *str;
     /* MEMSET */
 
-    char str1[50] = "School 21 * 2 is for programming geeks."; 
+    /*char str1[50] = "School 21 * 2 is for programming geeks."; 
     printf("\nBefore memset(): %s\n", str1);
     memset(str1 + 13, '.', 8*sizeof(char));
     printf("After memset():  %s\n", str1);
@@ -45,11 +47,11 @@ int main(void)
     ft_memset(arr1, 0, n*sizeof(arr1[0]));
     printf("Array after memset():");
     printArray(arr1, n);
-    printf("\n");
+    printf("\n");*/
 
     /* BZERO */
 
-    char str2[50] = "School 21 * 2 is for programming geeks."; 
+    /*char str2[50] = "School 21 * 2 is for programming geeks."; 
     printf("\nBefore bzero(): %s\n", str2);
     ft_bzero(str2, sizeof(str2));
     printf("After bzero():  %s\n", str2);
@@ -62,11 +64,23 @@ int main(void)
     ft_bzero(arr2, n*sizeof(arr2[0]));
     printf("Array after bzero():");
     printArray(arr2, n);
-    printf("\n");
+    printf("\n");*/
 
     /* MEMCPY */
-                          
-    const char src[50] = "School 21 * 2 is for programming geeks.";
+    
+	printf("\nSTART test ft_MEMCPY");
+	
+	if (memcpy(NULL, NULL, 5) != ft_memcpy(NULL, NULL, 5))
+	{
+		printf("\noriginal 00: %s", memcpy(NULL, NULL, 5));
+		printf("\nmy function: %s", ft_memcpy(NULL, NULL, 5));
+	}	
+	/*if (memcpy("NULL", NULL, 5) != ft_memcpy("NULL", NULL, 5))
+	{
+		printf("\noriginal 01: %s", memcpy("NULL", NULL, 5));
+		printf("\nmy function: %s", ft_memcpy("NULL", NULL, 5));
+	}*/
+    /*const char src[50] = "School 21 * 2 is for programming geeks.";
     char dest[50];
     strcpy(dest,"Heloooo!!");
     printf("\nBefore memcpy dest = %s\n", dest);
@@ -85,19 +99,39 @@ int main(void)
     printf("\nCopied array is "); 
     for (i=0; i<n; i++) 
         printf("%d ", idest[i]);
-    printf("\n");
+    printf("\n");*/
+
+	printf("\ntest END\n");
 
     /* MEMCCPY */
 
-    char buffer[80];
+	printf("\nSTART test ft_MEMCCPY");
+	
+	/*str = NULL;
+	if (memccpy(str, str, 'N', 4) != ft_memccpy(str, str, 'N', 4))
+	{
+		printf("\noriginal 00: %s", memccpy(str, str, 'N', 4));
+		printf("\nmy function: %s", ft_memccpy(str, str, 'N', 4));
+	}*/
+    /*char buffer[80];
     const char *msg = "This is the copied string: not copied";
     memset( buffer, '\0', 11);
     ft_memccpy( buffer, msg, ':', 11);
     printf( "\n%s\n", buffer );
-    printf( "%s\n", ft_memccpy( buffer, msg, ':', 11));
+    printf( "%s\n", ft_memccpy( buffer, msg, ':', 11));*/
+	printf("\ntest END\n");
 
     /* MEMMOVE */
 
+	printf("\nSTART test ft_MEMMOVE");
+	
+	str = NULL;
+	if (memmove(str, str, 4) != ft_memmove(str, str, 4))
+	{
+		printf("\noriginal 00: %s", memmove(str, str, 4));
+		printf("\nmy function: %s", ft_memmove(str, str, 4));
+	}
+	/*
     char target[21] = "a shiny white sphere";
     char *p = target + 8;
     char *source = target + 2;
@@ -111,10 +145,20 @@ int main(void)
 	printf( "\n MEMMOVE \nAfter memmove, target becomes \"%s\"\n", dest2);
 	ft_memmove(src3, dest2, 8);	
 	printf( "After memmove, target becomes \"%s\"\n", dest2);
+	*/
+	printf("\ntest END\n");
 
 	/* MEMCHR */
 
-    char *s1 = "";
+	printf("\nSTART test ft_MEMCHR");
+	
+	/*str = NULL;
+	if (memchr("NULL", str, 5) != ft_memchr("NULL", str, 5))
+	{
+		printf("\noriginal 00: %s", memchr("NULL", str, 5));
+		printf("\nmy function: %s", ft_memchr("NULL", str, 5));
+	}*/
+    /*char *s1 = "";
 	char *s2 = "abcdefabcdef";
 	char *s3 = "11111111111111111111";
 	printf("\nTesting memchr():\nTest1...");
@@ -144,7 +188,20 @@ int main(void)
 	printf("\nTest7...");
 	if ((char *)memchr(s3, '1', 20)  - s3 == 0)
 		printf("passed.");
-	else	printf("FAILED.");
+	else	printf("FAILED.");*/
+	printf("\ntest END\n");
+
+	/* MEMCMP */
+
+	printf("\nSTART test ft_MEMCMP");
+
+	/*str = NULL;	
+	if (memcmp("NULL", str, 5) != ft_memcmp("NULL", str, 5))
+	{
+		printf("\noriginal 00: %i", memcmp("NULL", str, 5));
+		printf("\nmy function: %i", ft_memcmp("NULL", str, 5));
+	}*/
+	printf("\ntest END\n");
 
 	/* STRLCPY */
 
@@ -161,12 +218,12 @@ int main(void)
 	/* STRCMP */
 
 	printf("\nresult of origin: %i", strcmp("\200", "\0"));
-	printf("\nresult of my: %i", ft_strcmp("\200", "\0"));
+	printf("\nresult of my function: %i", ft_strcmp("\200", "\0"));
 
 	/* STRNCMP */
 
 	printf("\nresult of origin: %i", strncmp("test", "tEst", 4));
-	printf("\nresult of my: %i\n", ft_strncmp("test", "tEst", 4));
+	printf("\nresult of my function: %i\n", ft_strncmp("test", "tEst", 4));
 
 	/* STRNSTR */
 
@@ -185,31 +242,31 @@ int main(void)
 	if (strnstr(haystackn, "les", 1) != ft_strnstr(haystackn, "les", 1))
 	{
 		printf("\noriginal 02: %s", strnstr(haystackn, "les", 1));
-		printf("\nmy: %s", ft_strnstr(haystackn, "les", 1));
+		printf("\nmy function: %s", ft_strnstr(haystackn, "les", 1));
 	}
 	if (strnstr(haystackn, "gen", 2) != ft_strnstr(haystackn, "gen", 2))
 	{
 		printf("\noriginal 03: %s", strnstr(haystackn, "gen", 2));
-		printf("\nmy: %s", ft_strnstr(haystackn, "gen", 2));
+		printf("\nmy function: %s", ft_strnstr(haystackn, "gen", 2));
 	}
 	haystackn = "abcdef";
 	needlen = "abcdefghijklmnop";
 	if (strnstr(haystackn, needlen, 6) != ft_strnstr(haystackn, needlen, 6))
 	{
 		printf("\noriginal 04: %s", strnstr(haystackn, needlen, 6));
-		printf("\nmy: %s", ft_strnstr(haystackn, needlen, 6));
+		printf("\nmy function: %s", ft_strnstr(haystackn, needlen, 6));
 	}
 	haystackn = "AAAAAAAAAAAAA";	
 	if (strnstr(haystackn, haystackn, 13) != ft_strnstr(haystackn, haystackn, 13))
 	{
 		printf("\noriginal 05: %s", strnstr(haystackn, haystackn, 13));
-		printf("\nmy: %s", ft_strnstr(haystackn, haystackn, 13));
+		printf("\nmy function: %s", ft_strnstr(haystackn, haystackn, 13));
 	}
 	haystackn = "lorem ipsum dolor sit amet";
 	if (strnstr(haystackn, "", 10) != ft_strnstr(haystackn, "", 10))
 	{
 		printf("\noriginal 06: %s", strnstr(haystackn, "", 10));
-		printf("\nmy: %s", ft_strnstr(haystackn, "", 10));
+		printf("\nmy function: %s", ft_strnstr(haystackn, "", 10));
 	}
 	if (strnstr(haystackn, "ipsumm", 30) != ft_strnstr(haystackn, "ipsumm", 30))
 	{
@@ -258,7 +315,7 @@ int main(void)
 	char	nbrl[40] = "000000000000000009999999999999999999999";
 	
 	printf("\nresult of origin: %i", atoi(nbrl));
-	printf("\nresult of my: %i\n", ft_atoi(nbrl));
+	printf("\nresult of my function: %i\n", ft_atoi(nbrl));
 
 	/* STRSPLIT */
 
