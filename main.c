@@ -1,6 +1,7 @@
 #include "libft.h"
 
 # include <string.h>
+# include <limits.h>
 # include <signal.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -13,322 +14,227 @@
 # include <sys/wait.h>
 #include <sys/mman.h>
 
-char target[21] = "a shiny white sphere";
-char  buf[10];
-
-void printArray(int arr[], int n) 
-{ 
-   for (int i=0; i<n; i++) 
-      printf("%d ", arr[i]);
-}
-
-void fillArray(int *arr, int nb, int n)
-{
-    for (int i=0; i<n; i++) 
-      arr[i] = nb;
-}
-
 int main(void)
 {
-	int i;
 	char *str;
-    /* MEMSET */
-
-    /*char str1[50] = "School 21 * 2 is for programming geeks."; 
-    printf("\nBefore memset(): %s\n", str1);
-    memset(str1 + 13, '.', 8*sizeof(char));
-    printf("After memset():  %s\n", str1);
-
-    int n = 10; 
-    int arr1[n];
-    printf("Empty array before memset():");
-    printArray(arr1, n);
-    printf("\n");
-    ft_memset(arr1, 0, n*sizeof(arr1[0]));
-    printf("Array after memset():");
-    printArray(arr1, n);
-    printf("\n");*/
+	const char *str1;
+	void* dst[50];
+	const char *src;	
+	
+	/* MEMSET */
+  
+  	printf("\nSTART test ft_MEMSET");	
+	if (memset(NULL, INT_MIN, 0) != ft_memset(NULL, INT_MIN, 0))
+	{
+		printf("\noriginal 00: %s", memset(NULL, INT_MIN, 0));
+		printf("\nmy function: %s", ft_memset(NULL, INT_MIN, 0));
+	}
+	printf(" - test END\n");
 
     /* BZERO */
-
-    /*char str2[50] = "School 21 * 2 is for programming geeks."; 
-    printf("\nBefore bzero(): %s\n", str2);
-    ft_bzero(str2, sizeof(str2));
-    printf("After bzero():  %s\n", str2);
-     
-    int arr2[n];
-    fillArray(arr2, 42, n);
-    printf("Array of 42 before bzero():");
-    printArray(arr2, n);
-    printf("\n");
-    ft_bzero(arr2, n*sizeof(arr2[0]));
-    printf("Array after bzero():");
-    printArray(arr2, n);
-    printf("\n");*/
-
+    
     /* MEMCPY */
     
 	printf("\nSTART test ft_MEMCPY");
-	
-	if (memcpy(NULL, NULL, 5) != ft_memcpy(NULL, NULL, 5))
+	if (memcpy(NULL, NULL, INT_MIN) != ft_memcpy(NULL, NULL, INT_MIN))
 	{
-		printf("\noriginal 00: %s", memcpy(NULL, NULL, 5));
-		printf("\nmy function: %s", ft_memcpy(NULL, NULL, 5));
-	}	
-	/*if (memcpy("NULL", NULL, 5) != ft_memcpy("NULL", NULL, 5))
-	{
-		printf("\noriginal 01: %s", memcpy("NULL", NULL, 5));
-		printf("\nmy function: %s", ft_memcpy("NULL", NULL, 5));
-	}*/
-    /*const char src[50] = "School 21 * 2 is for programming geeks.";
-    char dest[50];
-    strcpy(dest,"Heloooo!!");
-    printf("\nBefore memcpy dest = %s\n", dest);
-    ft_memcpy(dest, src, strlen(src)+1);
-    printf("After memcpy dest = %s\n", dest);
-
-    char csrc[] = "GeeksforGeeks"; 
-    char cdest[100];
-    ft_memcpy(cdest, csrc, strlen(csrc)+1); 
-    printf("Copied string is %s", cdest); 
-  
-    int isrc[] = {10, 20, 30, 40, 50}; 
-    n = sizeof(isrc)/sizeof(isrc[0]); 
-    int idest[n], i; 
-    ft_memcpy(idest, isrc,  sizeof(isrc)); 
-    printf("\nCopied array is "); 
-    for (i=0; i<n; i++) 
-        printf("%d ", idest[i]);
-    printf("\n");*/
-
-	printf("\ntest END\n");
+		printf("\noriginal 00: %s", memcpy(NULL, NULL, INT_MIN));
+		printf("\nmy function: %s", ft_memcpy(NULL, NULL, INT_MIN));
+	}
+	printf(" - test END\n");
 
     /* MEMCCPY */
 
-	printf("\nSTART test ft_MEMCCPY");
-	
-	/*str = NULL;
-	if (memccpy(str, str, 'N', 4) != ft_memccpy(str, str, 'N', 4))
+	printf("\nSTART test ft_MEMCCPY");	
+	if (memccpy(NULL, NULL, INT_MIN, 0) != ft_memccpy(NULL, NULL, INT_MIN, 0))
 	{
-		printf("\noriginal 00: %s", memccpy(str, str, 'N', 4));
-		printf("\nmy function: %s", ft_memccpy(str, str, 'N', 4));
-	}*/
-    /*char buffer[80];
-    const char *msg = "This is the copied string: not copied";
-    memset( buffer, '\0', 11);
-    ft_memccpy( buffer, msg, ':', 11);
-    printf( "\n%s\n", buffer );
-    printf( "%s\n", ft_memccpy( buffer, msg, ':', 11));*/
-	printf("\ntest END\n");
+		printf("\noriginal 00: %s", memccpy(NULL, NULL, INT_MIN, 0));
+		printf("\nmy function: %s", ft_memccpy(NULL, NULL, INT_MIN, 0));
+	}
+	printf(" - test END\n");
 
     /* MEMMOVE */
 
-	printf("\nSTART test ft_MEMMOVE");
-	
+	printf("\nSTART test ft_MEMMOVE");	
 	str = NULL;
 	if (memmove(str, str, 4) != ft_memmove(str, str, 4))
 	{
 		printf("\noriginal 00: %s", memmove(str, str, 4));
 		printf("\nmy function: %s", ft_memmove(str, str, 4));
 	}
-	/*
-    char target[21] = "a shiny white sphere";
-    char *p = target + 8;
-    char *source = target + 2;
-    printf( "Before memmove, target is \"%s\"\n", target );
-    ft_memmove( p, source, 5 );
-    printf( "After memmove, target becomes \"%s\"\n", target );
-	char	src3[] = "Hello les genw";
-	char	*dest2;
-	dest2 = src3 + 1;
-	ft_memmove(dest2, src3, 8);	
-	printf( "\n MEMMOVE \nAfter memmove, target becomes \"%s\"\n", dest2);
-	ft_memmove(src3, dest2, 8);	
-	printf( "After memmove, target becomes \"%s\"\n", dest2);
-	*/
-	printf("\ntest END\n");
+	printf(" - test END\n");
 
 	/* MEMCHR */
 
-	printf("\nSTART test ft_MEMCHR");
-	
-	/*str = NULL;
-	if (memchr("NULL", str, 5) != ft_memchr("NULL", str, 5))
-	{
-		printf("\noriginal 00: %s", memchr("NULL", str, 5));
-		printf("\nmy function: %s", ft_memchr("NULL", str, 5));
-	}*/
-    /*char *s1 = "";
-	char *s2 = "abcdefabcdef";
-	char *s3 = "11111111111111111111";
-	printf("\nTesting memchr():\nTest1...");
-	if (memchr(s1, 'x', 0) == NULL)
-		printf("passed.");
-	else	printf("FAILED.");
-	printf("\nTest2...");
-	if (memchr(s2, 'y', 0) == NULL)
-		printf("passed.");
-	else	printf("FAILED.");
-	printf("\nTest3...");
-	if ((char *)memchr(s2, 'a', 1) - s2 == 0)
-		printf("passed.");
-	else	printf("FAILED.");
-	printf("\nTest4...");
-	if (memchr(s2, 'd', 2)  == NULL)
-		printf("passed.");
-	else	printf("FAILED.");
-	printf("\nTest5...");
-	if ((char *)memchr(s2, 'd', 12)  - s2 == 3)
-		printf("passed.");
-	else	printf("FAILED.");
-	printf("\nTest6...");
-	if ((char *)memchr(s2, 'f', 12)  - s2 == 5)
-		printf("passed.");
-	else	printf("FAILED.");
-	printf("\nTest7...");
-	if ((char *)memchr(s3, '1', 20)  - s3 == 0)
-		printf("passed.");
-	else	printf("FAILED.");*/
-	printf("\ntest END\n");
-
 	/* MEMCMP */
 
-	printf("\nSTART test ft_MEMCMP");
+	/* STRLEN */
 
-	/*str = NULL;	
-	if (memcmp("NULL", str, 5) != ft_memcmp("NULL", str, 5))
+	printf("\nSTART test ft_STRLEN");
+	src = "Hello world";
+	if (strlen(src) != ft_strlen(src))
 	{
-		printf("\noriginal 00: %i", memcmp("NULL", str, 5));
-		printf("\nmy function: %i", ft_memcmp("NULL", str, 5));
-	}*/
-	printf("\ntest END\n");
+		printf("\noriginal 00: %lu", strlen(src));
+		printf("\nmy function: %lu", ft_strlen(src));
+	}	
+	printf(" - test END\n");
 
-	/* STRLCPY */
+	/* STRDUP */
 
-	const char *str3 = "образец строки";
-	size_t sz = 0;
-	buf[0] = '\0';
-	printf("строка: \"%s\"\n\n", str3);
-	printf("буфер перед копированием: \"%s\"\n", buf);
-	sz = ft_strlcat(buf, str3, sizeof(buf));
-	if (sz >= sizeof(buf))
- 	printf("обнаружено усечение строки с %zu до %lu символов !\n", sz, sizeof(buf)-1);
- 	printf("буфер после копирования:  \"%s\"\n", buf);
+	printf("\nSTART test ft_STRDUP");
+	src = "Hello world";
+	if (strcmp(strdup(src), ft_strdup(src)))
+	{
+		printf("\noriginal 00: %s", strdup(src));
+		printf("\nmy function: %s", ft_strdup(src));
+	}
+	printf(" - test END\n");	
 
-	/* STRCMP */
+	/* STRCPY */
 
-	printf("\nresult of origin: %i", strcmp("\200", "\0"));
-	printf("\nresult of my function: %i", ft_strcmp("\200", "\0"));
+	printf("\nSTART test ft_STRCPY");
+	src = "Hello world";
+	if (strcpy((char*)dst, src) != ft_strcpy((char*)dst, src))
+	{
+		printf("\noriginal 00: %s", strcpy((char*)dst, src));
+		printf("\nmy function: %s", ft_strcpy((char*)dst, src));
+	}	
+	printf(" - test END\n");
+	
+	/* STRNCPY */
 
-	/* STRNCMP */
+	printf("\nSTART test ft_STRNCPY");
+	src = "Hello world";
+	if (strncpy((char*)dst, src, 6) != ft_strncpy((char*)dst, src, 6))
+	{
+		printf("\noriginal 00: %s", strncpy((char*)dst, src, 6));
+		printf("\nmy function: %s", ft_strncpy((char*)dst, src, 6));
+	}	
+	printf(" - test END\n");
 
-	printf("\nresult of origin: %i", strncmp("test", "tEst", 4));
-	printf("\nresult of my function: %i\n", ft_strncmp("test", "tEst", 4));
+	/* STRCAT */
+
+	printf("\nSTART test ft_STRCAT");	
+	str = NULL;
+	if (strcat((char*)dst, src) != ft_strcat((char*)dst, src))
+	{
+		printf("\noriginal 00: %s", strcat((char*)dst, src));
+		printf("\nmy function: %s", ft_strcat((char*)dst, src));
+	}
+	printf(" - test END\n");
+
+	/* STRNCAT */
+
+	printf("\nSTART test ft_STRNCAT");
+	src = "Hello world";
+	if (strncat((char*)dst, src, 6) != ft_strncat((char*)dst, src, 6))
+	{
+		printf("\noriginal 00: %s", strncat((char*)dst, src, 6));
+		printf("\nmy function: %s", ft_strncat((char*)dst, src, 6));
+	}	
+	printf(" - test END\n");
+
+	/* STRLCAT */
+
+	printf("\nSTART test ft_STRLCAT");
+	src = "Hello world";
+	if (strlcat((char*)dst, src, 6) != ft_strlcat((char*)dst, src, 6))
+	{
+		printf("\noriginal 00: %lu", strlcat((char*)dst, src, 6));
+		printf("\nmy function: %lu", ft_strlcat((char*)dst, src, 6));
+	}	
+	printf(" - test END\n");
+
+	/* STRCHR */
+
+	printf("\nSTART test ft_STRCHR");	
+	str = NULL;
+	if (strchr(src, INT_MIN) != ft_strchr(src, INT_MIN))
+	{
+		printf("\noriginal 00: %s", strchr(src, INT_MIN));
+		printf("\nmy function: %s", ft_strchr(src, INT_MIN));
+	}
+	printf(" - test END\n");
+
+	/* STRRCHR */
+
+	printf("\nSTART test ft_STRRCHR");	
+	str = NULL;
+	if (strrchr(src, INT_MIN) != ft_strrchr(src, INT_MIN))
+	{
+		printf("\noriginal 00: %s", strrchr(src, INT_MIN));
+		printf("\nmy function: %s", ft_strrchr(src, INT_MIN));
+	}
+	printf(" - test END\n");
+
+	/* STRSTR */
+
+	printf("\nSTART test ft_STRSTR");	
+	str = "Hallo world";
+	str1 = "Hallo \0World";
+	if (strstr(str1, str) != ft_strstr(str1, str))
+	{
+		printf("\noriginal 00: %s", strstr(str1, str));
+		printf("\nmy function: %s", ft_strstr(str1, str));
+	}
+	printf(" - test END\n");
 
 	/* STRNSTR */
 
-	printf("\nSTART test ft_STRNSTR");
+	/* STRCMP */
 
-	char	*haystackn;
-	char	*needlen;
-	int		len_strnstr;
+	printf("\nSTART test ft_STRCMP");
+	str = "Hallo World";
+	str1 = "Hallo \0World";
+	if (strcmp(str1, str) != ft_strcmp(str1, str))
+	{
+		printf("\noriginal 00: %i", strcmp(str1, str));
+		printf("\nmy function: %i", ft_strcmp(str1, str));
+	}
+	printf(" - test END\n");
 
-	haystackn = "Hello les genw";
-	needlen = "Hello";
-	if (strnstr(haystackn, needlen, 6) != ft_strnstr(haystackn, needlen, 6))
-		printf("\nerr0");
-	if (strnstr(haystackn, needlen, 3) != ft_strnstr(haystackn, needlen, 3))
-		printf("\nerr1");
-	if (strnstr(haystackn, "les", 1) != ft_strnstr(haystackn, "les", 1))
-	{
-		printf("\noriginal 02: %s", strnstr(haystackn, "les", 1));
-		printf("\nmy function: %s", ft_strnstr(haystackn, "les", 1));
-	}
-	if (strnstr(haystackn, "gen", 2) != ft_strnstr(haystackn, "gen", 2))
-	{
-		printf("\noriginal 03: %s", strnstr(haystackn, "gen", 2));
-		printf("\nmy function: %s", ft_strnstr(haystackn, "gen", 2));
-	}
-	haystackn = "abcdef";
-	needlen = "abcdefghijklmnop";
-	if (strnstr(haystackn, needlen, 6) != ft_strnstr(haystackn, needlen, 6))
-	{
-		printf("\noriginal 04: %s", strnstr(haystackn, needlen, 6));
-		printf("\nmy function: %s", ft_strnstr(haystackn, needlen, 6));
-	}
-	haystackn = "AAAAAAAAAAAAA";	
-	if (strnstr(haystackn, haystackn, 13) != ft_strnstr(haystackn, haystackn, 13))
-	{
-		printf("\noriginal 05: %s", strnstr(haystackn, haystackn, 13));
-		printf("\nmy function: %s", ft_strnstr(haystackn, haystackn, 13));
-	}
-	haystackn = "lorem ipsum dolor sit amet";
-	if (strnstr(haystackn, "", 10) != ft_strnstr(haystackn, "", 10))
-	{
-		printf("\noriginal 06: %s", strnstr(haystackn, "", 10));
-		printf("\nmy function: %s", ft_strnstr(haystackn, "", 10));
-	}
-	if (strnstr(haystackn, "ipsumm", 30) != ft_strnstr(haystackn, "ipsumm", 30))
-	{
-		printf("\noriginal 07: %s", strnstr(haystackn, "ipsumm", 30));
-		printf("\nmy function: %s", ft_strnstr(haystackn, "ipsumm", 30));
-	}
-	if (strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9) != ft_strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9))
-	{
-		printf("\noriginal 08: %s", strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9));
-		printf("\nmy function: %s", ft_strnstr("MZIRIBMZIRIBMZE123", "MZIRIBMZE", 9));
-	}
-	if (strnstr("123456789", "9", 8) != ft_strnstr("123456789", "9", 8))
-	{
-		printf("\noriginal 09: %s", strnstr("123456789", "9", 8));
-		printf("\nmy function: %s", ft_strnstr("123456789", "9", 8));
-	}
-	char	buf[11];
+	/* STRNCMP */
 
-	bzero(buf, 11);
-	strcpy(buf, "un deux 9");
-	buf[9] = '6';
-	if (strnstr(buf, "deux", 10) != ft_strnstr(buf, "deux", 10))
+	printf("\nSTART test ft_STRNCMP");
+	str = "Hallo World";
+	str1 = "Hallo \0World";
+	if (strncmp(str1, str, INT_MIN) != ft_strncmp(str1, str, INT_MIN))
 	{
-		printf("\noriginal fn: %s", strnstr(buf, "deux", 10));
-		printf("\nmy function: %s", ft_strnstr(buf, "deux", 10));
+		printf("\noriginal 00: %i", strncmp(str1, str, INT_MIN));
+		printf("\nmy function: %i", ft_strncmp(str1, str, INT_MIN));
 	}
-	char *	big = "123456789";
-	char *	little = "9";
-	size_t	max = 8;
-
-	char 	*s6 = strnstr(big, little, max);
-	char 	*s7 = ft_strnstr(big, little, max);
-
-	if (s6 != s7)
-		printf("\nERROR %s and %s", s6, s7);
-
-	printf("\ntest END\n");
+	printf(" - test END\n");
 
 	/* ATOI */
 
-	/*
-	char	nbrl[40];	
-	sprintf(nbrl, "%ld", (LONG_MAX));
-	
-	*/
-	char	nbrl[40] = "000000000000000009999999999999999999999";
-	
-	printf("\nresult of origin: %i", atoi(nbrl));
-	printf("\nresult of my function: %i\n", ft_atoi(nbrl));
+	printf("\nSTART test ft_ATOI");	
+	src = "000000000000000009999999999999999999999";
+	if (atoi(src) != ft_atoi(src))
+	{
+		printf("\noriginal 00: %i", atoi(src));
+		printf("\nmy function: %i", ft_atoi(src));
+	}
+	sprintf((char*)dst, "%ld", (LONG_MAX));
+	if (atoi(src) != ft_atoi(src))
+	{
+		printf("\noriginal 00: %i", atoi(src));
+		printf("\nmy function: %i", ft_atoi(src));
+	}
+	printf(" - test END\n");
 
 	/* STRSPLIT */
 
-	char **ara;
+	/*char **ara;
 
 	ara = ft_strsplit("   foo  fooo", ' ');
 	i = 0;
 	while(ara[i])
-		printf("\n%s", ara[i++]);
+		printf("\n%s", ara[i++]);*/
 
 	/* ITOA */
 
-	printf("\n\nitoa %s", ft_itoa(0));
+	/*printf("\n\nitoa %s", ft_itoa(0));*/
+	printf("\n");
 
     return 0;
 }
