@@ -208,17 +208,53 @@ int main(void)
 	/* ATOI */
 
 	printf("\nSTART test ft_ATOI");	
-	src = "000000000000000009999999999999999999999";
+	src = "-9223372036854775809";
 	if (atoi(src) != ft_atoi(src))
 	{
 		printf("\noriginal 00: %i", atoi(src));
 		printf("\nmy function: %i", ft_atoi(src));
 	}
-	sprintf((char*)dst, "%ld", (LONG_MAX));
+	src = "9223372036854775808";
 	if (atoi(src) != ft_atoi(src))
 	{
-		printf("\noriginal 00: %i", atoi(src));
+		printf("\noriginal 01: %i", atoi(src));
 		printf("\nmy function: %i", ft_atoi(src));
+	}
+	src = "-9223372036854775811";
+	if (atoi(src) != ft_atoi(src))
+	{
+		printf("\noriginal 02: %i", atoi(src));
+		printf("\nmy function: %i", ft_atoi(src));
+	}
+	src = "9223372036854775809";
+	if (atoi(src) != ft_atoi(src))
+	{
+		printf("\noriginal 03: %i", atoi(src));
+		printf("\nmy function: %i", ft_atoi(src));
+	}
+	src = "9223372036854775808999999999999";
+	if (atoi(src) != ft_atoi(src))
+	{
+		printf("\noriginal 04: %i", atoi(src));
+		printf("\nmy function: %i", ft_atoi(src));
+	}
+	src = "-9223372036854775808999999999999";
+	if (atoi(src) != ft_atoi(src))
+	{
+		printf("\noriginal 05: %i", atoi(src));
+		printf("\nmy function: %i", ft_atoi(src));
+	}
+	sprintf((char*)dst, "%ld", (LONG_MAX));
+	if (atoi((char*)dst) != ft_atoi((char*)dst))
+	{
+		printf("\noriginal 06: %i", atoi((char*)dst));
+		printf("\nmy function: %i", ft_atoi((char*)dst));
+	}
+	sprintf((char*)dst, "%ld", (LONG_MIN));
+	if (atoi((char*)dst) != ft_atoi((char*)dst))
+	{
+		printf("\noriginal 07: %i", atoi((char*)dst));
+		printf("\nmy function: %i", ft_atoi((char*)dst));
 	}
 	printf(" - test END\n");
 
@@ -234,7 +270,16 @@ int main(void)
 	/* ITOA */
 
 	/*printf("\n\nitoa %s", ft_itoa(0));*/
-	printf("\n");
 
+		/* STRNEW */
+
+	printf("\nSTART test ft_STRNEW");
+	if (ft_strnew(65535) != NULL)
+	{		
+		printf("\nft_strnew dose not handle over size_t");
+	}
+	printf(" - test END\n");
+
+	printf("\n");
     return 0;
 }

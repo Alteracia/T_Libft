@@ -1,5 +1,5 @@
-make --directory ~/Libft
-gcc -Wall -Wextra -Werror -Werror -I ~/Libft main.c -L ~/Libft -lft
-./a.out
+make re --directory ~/$1
+gcc -Wall -Wextra -Werror -O0 -g -Werror -I ~/$1 main.c -L ~/$1 -lft
+~/Applications/valgrind/bin/valgrind --leak-check=yes ./a.out
 rm a.out
-make --directory ~/Libft fclean
+make --directory ~/$1 fclean
