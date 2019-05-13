@@ -147,8 +147,7 @@ int main(void)
 
 	/* STRCHR */
 
-	printf("\nSTART test ft_STRCHR");	
-	str = NULL;
+	printf("\nSTART test ft_STRCHR");
 	if (strchr(src, INT_MIN) != ft_strchr(src, INT_MIN))
 	{
 		printf("\noriginal 00: %s", strchr(src, INT_MIN));
@@ -158,8 +157,7 @@ int main(void)
 
 	/* STRRCHR */
 
-	printf("\nSTART test ft_STRRCHR");	
-	str = NULL;
+	printf("\nSTART test ft_STRRCHR");
 	if (strrchr(src, INT_MIN) != ft_strrchr(src, INT_MIN))
 	{
 		printf("\noriginal 00: %s", strrchr(src, INT_MIN));
